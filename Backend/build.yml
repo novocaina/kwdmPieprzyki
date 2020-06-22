@@ -1,0 +1,47 @@
+trigger:
+  batch: true
+  branches:
+    include:
+    - develop
+    - master
+  paths:
+    include:
+    - Backend/MolesApi/
+resources:
+- repo: self
+  fetchDepth: 15
+variables:
+  BuildConfiguration: Release
+queue:
+  name: Hosted Windows 2019 with VS2019
+steps:
+- task: DotNetCoreCLI@2
+  displayName: Restore
+  inputs:
+    command: restore
+    projects: 'Backend\**\MolesApi.csproj'
+    
+- task: DotNetCoreCLI@2
+  displayName: Build
+  inputs:
+    projects: 'Backend\**\MolesApi.csproj'
+    arguments: '--configuration $(BuildConfiguration)'
+
+
+
+- task: DotNetCoreCLI@2
+  displayName: Publish
+  inputs:
+    command: publish
+    publishWebProjects: false
+    projects: 'Backend\**\MolesApi.csproj'
+    arguments: '--configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)'
+    zipAfterPublish: true
+    modifyOutputPath: true
+
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact'
+  inputs:
+    PathtoPublish: '$(build.artifactstagingdirectory)'
+    ArtifactName: 'Api_Artifact'

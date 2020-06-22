@@ -1,0 +1,67 @@
+<div class="jumbotron container" style="margin-top: 100px;">
+<div class="container text-center d-flex flex-column">
+  <form [formGroup]="registerForm" class="form-signin d-flex flex-column" (ngSubmit)="createAccount()"
+    autocomplete="off">
+    <h3 class="mb-5">Dodawanie pacjenta</h3>
+    <div class="row">
+      <mat-form-field class="w-45 example-full-width">
+        <label for="inputName" class="sr-only">Imię </label>
+        <input matInput type="text" id="inputName" class="form-control" formControlName="name" placeholder="Imię"
+          required="" autofocus="" class="m-2" />
+      </mat-form-field>
+      <mat-form-field class="w-45 example-full-width">
+        <label for="inputSurname" class="sr-only">Nazwisko </label>
+        <input matInput type="text" id="inputSurname" class="form-control" formControlName="surname"
+          placeholder="Nazwisko" required="" autofocus="" class="m-2" />
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <mat-form-field class="w-45 example-full-width">
+        <label for="inputAddress" class="sr-only">Adres </label>
+        <input matInput type="text" id="inputAddress" class="form-control" formControlName="address" placeholder="Adres"
+          required="" autofocus="" class="m-2" />
+      </mat-form-field>
+      <mat-form-field class="w-45 example-full-width">
+        <label for="inputCity" class="sr-only">Miasto </label>
+        <input matInput type="text" id="inputCity" class="form-control" formControlName="city" placeholder="Miasto"
+          required="" autofocus="" class="m-2" />
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <mat-form-field class="w-45 example-full-width">
+        <label for="inputPostal" class="sr-only">Kod pocztowy </label>
+        <input matInput type="text" id="inputPostal" class="form-control" formControlName="postal"
+          placeholder="Kod pocztowy" required="" autofocus="" class="m-2" />
+      </mat-form-field>
+      <mat-form-field class="w-45 example-full-width">
+        <label for="inputPhone" class="sr-only">Numer telefonu </label>
+        <input matInput type="text" id="inputPhone" class="form-control" formControlName="phone"
+          placeholder="Numer telefonu" required="" autofocus="" class="m-2" />
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <mat-form-field class="w-45 example-full-width">
+        <label for="inputEmail" class="sr-only">Email </label>
+        <input matInput type="email" id="inputEmail" class="form-control" formControlName="email" placeholder="Email"
+          required="" autofocus="" class="m-2" />
+      </mat-form-field>
+      <mat-form-field class="w-45 example-full-width">
+        <label for="inputRole" class="sr-only"> Lekarz </label>
+        <mat-select id="inputRole" class="form-control" placeholder="Lekarz" required="" class="m-2">
+          <mat-option
+            *ngFor="let item of doctors"
+            [value]="item.partitionKey"
+            >{{ item.rowKey }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <button mat-button class="btn btn-lg btn-primary btn-block m-2" type="submit" [disabled]="!registerForm.valid" (click)="createAccount()">
+      Zapisz
+    </button>
+  </form>
+</div>
+</div>

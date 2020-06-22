@@ -1,0 +1,37 @@
+<div class="jumbotron container" style="margin-top: 100px;">
+  <h3 class="mb-5">Dodaj zdjęcie w celu wykonania badania</h3>
+  <div class="text-center">
+    <mat-form-field>
+      <mat-label>Wybierz lekarza</mat-label>
+      <mat-select>
+        <mat-option
+          *ngFor="let item of doctorsList"
+          [value]="item.partitionKey"
+          (onSelectionChange)="onSelectOption($event)"
+          >{{ item.rowKey }}</mat-option
+        >
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div
+    class="uploadfilecontainer"
+    (click)="fileInput.click()"
+    appDragDrop
+    (onFileDropped)="uploadFile($event)"
+  >
+    <input
+      hidden
+      type="file"
+      #fileInput
+      (change)="uploadFile($event.target.files)"
+      accept="image/*"
+    />
+  </div>
+  <div class="files-list" *ngFor="let file of files; let i = index">
+    <p>{{ file }}</p>
+    <button class="delete-file" (click)="deleteAttachment(i)">
+      <mat-icon>clear</mat-icon>
+    </button>
+  </div>
+</div>

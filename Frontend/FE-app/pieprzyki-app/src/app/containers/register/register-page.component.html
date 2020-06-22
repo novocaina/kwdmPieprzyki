@@ -1,0 +1,82 @@
+<div class="container text-center d-flex flex-column" style="width: 40%; margin-top: 100px;">
+  <form [formGroup]="registerForm" class="form-signin d-flex flex-column" (ngSubmit)="createAccount()"
+    autocomplete="off">
+    <h1 class="h3 mb-3 font-weight-normal">Aplikacja pieprzyki - rejestracja</h1>
+    <span class="mb-3 mt-2">Hasło musi posiadać przynajmniej jedną: cyfrę 0-9, jedną dużą literę A-Z oraz jeden znak specjalny.</span>
+    <div class="row">
+      <mat-form-field class="w-45 example-full-width">
+        <label for="inputName" class="sr-only">Imię </label>
+        <input matInput type="text" id="inputName" class="form-control" formControlName="name" placeholder="Imię"
+          required="" autofocus="" class="m-2" />
+      </mat-form-field>
+      <mat-form-field class="w-45 example-full-width">
+        <label for="inputSurname" class="sr-only">Nazwisko </label>
+        <input matInput type="text" id="inputSurname" class="form-control" formControlName="surname"
+          placeholder="Nazwisko" required="" autofocus="" class="m-2" />
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <mat-form-field class="w-45 example-full-width">
+        <label for="inputAddress" class="sr-only">Adres </label>
+        <input matInput type="text" id="inputAddress" class="form-control" formControlName="address" placeholder="Adres"
+          required="" autofocus="" class="m-2" />
+      </mat-form-field>
+      <mat-form-field class="w-45 example-full-width">
+        <label for="inputCity" class="sr-only">Miasto </label>
+        <input matInput type="text" id="inputCity" class="form-control" formControlName="city" placeholder="Miasto"
+          required="" autofocus="" class="m-2" />
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <mat-form-field class="w-45 example-full-width">
+        <label for="inputPostal" class="sr-only">Kod pocztowy </label>
+        <input matInput type="text" id="inputPostal" class="form-control" formControlName="postal"
+          placeholder="Kod pocztowy" required="" autofocus="" class="m-2" />
+      </mat-form-field>
+      <mat-form-field class="w-45 example-full-width">
+        <label for="inputPhone" class="sr-only">Numer telefonu </label>
+        <input matInput type="text" id="inputPhone" class="form-control" formControlName="phone"
+          placeholder="Numer telefonu" required="" autofocus="" class="m-2" />
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <mat-form-field class="w-45 example-full-width">
+        <label for="inputEmail" class="sr-only">Email </label>
+        <input matInput type="email" id="inputEmail" class="form-control" formControlName="email" placeholder="Email"
+          required="" autofocus="" class="m-2" />
+      </mat-form-field>
+      <mat-form-field class="w-45 example-full-width">
+        <label for="inputPassword" class="sr-only">Hasło</label>
+        <input matInput type="password" id="inputPassword" class="form-control" placeholder="Hasło"
+          formControlName="password" required="" class="m-2" />
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <mat-form-field class="w-45 example-full-width">
+        <label for="inputRepetedPassword" class="sr-only">Powtórzone hasło</label>
+        <input matInput type="password" id="inputRepetedPassword" class="form-control" placeholder="Powtórzone hasło"
+          formControlName="repPassword" required="" class="m-2" />
+      </mat-form-field>
+      <mat-form-field class="w-45 example-full-width">
+        <label for="inputRole" class="sr-only">Rola</label>
+        <mat-select id="inputRole" class="form-control" placeholder="Rola" formControlName="role" required=""
+          class="m-2">
+          <mat-option *ngFor="let role of roles" placeholder="Rola" [value]="role.id">
+            {{role.value}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <button mat-button class="btn btn-lg btn-primary btn-block m-2" type="submit" [disabled]="!registerForm.valid" (click)="createAccount()">
+      Załóż konto
+    </button>
+    <button mat-button class="btn btn-lg btn-primary btn-block m-2" (click)="loginBtnClick()">
+      Wróć do logowania
+    </button>
+  </form>
+</div>

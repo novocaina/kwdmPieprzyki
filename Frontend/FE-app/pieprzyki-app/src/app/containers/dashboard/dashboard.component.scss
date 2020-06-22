@@ -1,0 +1,10 @@
+@import "./../../styles/variable.scss";
+
+button {
+  width: 200px;
+  height: 200px;
+  margin: 2vh;
+  mat-icon {
+    font-size: 24px;
+  }
+}

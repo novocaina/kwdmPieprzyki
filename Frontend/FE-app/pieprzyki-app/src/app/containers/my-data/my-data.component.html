@@ -1,0 +1,48 @@
+<div class="jumbotron container" style="margin-top: 100px;">
+  <h3 class="mb-5">Moje badania</h3>
+
+  <table mat-table [dataSource]="exams">
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef class="font-family-72-bold">
+        Data badania
+      </th>
+      <td
+        mat-cell
+        (click)="onClientSelection(element)"
+        *matCellDef="let element"
+      >
+        {{ element.date }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="examination">
+      <th mat-header-cell *matHeaderCellDef class="font-family-72-bold">
+        Badanie
+      </th>
+      <td
+        (click)="onClientSelection(element)"
+        mat-cell
+        *matCellDef="let element"
+      >
+        {{ element.title }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef class="font-family-72-bold">
+        Opis
+      </th>
+      <td
+        (click)="onClientSelection(element)"
+        mat-cell
+        *matCellDef="let element"
+      >
+        {{ element.description }}
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+  <div class="alert alert-secondary" role="alert" *ngIf="!exams">
+    Brak danych.
+  </div>
+</div>

@@ -1,0 +1,136 @@
+<div class="jumbotron container" style="margin-top: 100px;">
+  <h3 class="mb-5">Informacje</h3>
+  <form
+    [formGroup]="form"
+    class="form-signin d-flex flex-column"
+    autocomplete="off"
+  >
+    <div class="row">
+      <div class="col">
+        <div class="row">
+          <mat-form-field class="example-full-width w-75">
+            <label for="inputName" class="sr-only">Imię pacjenta</label>
+            <input
+              matInput
+              type="text"
+              id="inputName"
+              class="form-control"
+              formControlName="name"
+              readonly="true"
+              placeholder="Imię pacjenta"
+              required=""
+              autofocus=""
+              class="m-2"
+            />
+          </mat-form-field>
+        </div>
+
+        <div class="row">
+          <mat-form-field class="example-full-width w-75">
+            <label for="inputSurname" class="sr-only">Nazwisko pacjenta </label>
+            <input
+              matInput
+              type="text"
+              id="inputSurname"
+              class="form-control"
+              formControlName="surname"
+              placeholder="Nazwisko pacjenta"
+              required=""
+              autofocus=""
+              readonly="true"
+              class="m-2"
+            />
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <mat-form-field class="example-full-width w-75">
+            <label for="inputAddress" class="sr-only">Adres pacjenta</label>
+            <input
+              matInput
+              type="text"
+              id="inputAddress"
+              class="form-control"
+              formControlName="address"
+              placeholder="Adres pacjenta"
+              required=""
+              autofocus=""
+              readonly="true"
+              class="m-2"
+            />
+          </mat-form-field>
+        </div>
+
+        <div class="row">
+          <mat-form-field class="example-full-width w-75">
+            <label for="inputDesc" class="sr-only">Opis wizyty </label>
+            <mat-label>Opis wizyty</mat-label>
+            <textarea matInput
+            cdkTextareaAutosize
+            #autosize="cdkTextareaAutosize"
+            id="inputDesc"
+            cdkAutosizeMinRows="1"
+            class="form-control"
+            formControlName="examinationDescription"
+            placeholder="Opis wizyty"
+            required=""
+            readonly="true"
+            autofocus=""
+            class="m-2"
+            cdkAutosizeMaxRows="5"></textarea>
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <mat-form-field class="example-full-width w-75">
+            <label for="inputMed" class="sr-only">Ustalone leczenie </label>
+            <input
+              matInput
+              type="text"
+              id="inputMed"
+              class="form-control"
+              formControlName="examinationMed"
+              placeholder="Ustalone leczenie"
+              required=""
+              readonly="true"
+              autofocus=""
+              class="m-2"
+            />
+          </mat-form-field>
+        </div>
+      </div>
+      <div>
+        <mat-tab-group>
+          <mat-tab
+            label="Obraz {{ i + 1 }}"
+            *ngFor="let p of photoContent; let i = index"
+          >
+            <mat-card class="example-card" style="width: 400px;">
+              <mat-card-header>
+                <mat-card-title>{{ examination }}</mat-card-title>
+                <mat-card-subtitle>{{ nameOfMedicalUnit }}</mat-card-subtitle>
+                <mat-card-subtitle>{{ examinationAddress }}</mat-card-subtitle>
+                <mat-card-subtitle>{{ examinationData }}</mat-card-subtitle>
+              </mat-card-header>
+              <img mat-card-image src="{{ p?.path }}" />
+              <mat-card-content>
+                <span>Opis lekarza </span>
+                <input
+                  matInput
+                  placeholder="Opis lekarza"
+                  value="{{predictions[i]}}"
+                  readonly="true"
+                />
+                <span>Opis z sieci </span>
+                <input
+                  matInput
+                  placeholder="Opis z sieci"
+                  value="{{ p?.descriptions?.Prediction }}"
+                  readonly="true"
+                />
+              </mat-card-content>
+            </mat-card>
+          </mat-tab>
+        </mat-tab-group>
+      </div>
+    </div>
+  </form>
+</div>

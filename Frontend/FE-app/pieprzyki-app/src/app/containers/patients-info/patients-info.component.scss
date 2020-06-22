@@ -1,0 +1,15 @@
+@import "./../../styles/variable.scss";
+
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.col-p-0 {
+  padding: 0px;
+}
+
+mat-form-field {
+  width: 36%;
+}

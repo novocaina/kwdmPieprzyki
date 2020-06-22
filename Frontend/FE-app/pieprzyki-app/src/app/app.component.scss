@@ -1,0 +1,13 @@
+@import "./styles/variable.scss";
+
+.navbar {
+  padding: 5px 1rem;
+  box-shadow: 0px 1px 1px $header-label;
+  display: flex;
+  flex-direction: inherit;
+  justify-content: space-between;
+}
+
+.col-white{
+  color: white;
+}

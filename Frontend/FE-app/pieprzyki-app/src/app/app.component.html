@@ -1,0 +1,14 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-dark nav-style" *ngIf="isLoggedIn$ | async">
+  <button mat-raised-button class="btn btn-outline-success my-2 my-sm-0" (click)="onDashboard(Routes.Dashboard)">
+    <mat-icon>dashboard</mat-icon>
+  </button>
+  <div>
+  <label  class="mr-2 col-white"> {{login$ | async}} </label>
+  <label *appHasRole="'User'" class="mr-2 col-white"> ({{ role$ | async}})</label>
+  <label *appHasRole="'Doctor'" class="mr-2 col-white"> ({{ role$ | async}})</label>
+
+  <button mat-raised-button class="btn btn-outline-success my-2 my-sm-0" (click)="onLogout()">Wyloguj</button>
+</div>
+</nav>
+
+<router-outlet></router-outlet>

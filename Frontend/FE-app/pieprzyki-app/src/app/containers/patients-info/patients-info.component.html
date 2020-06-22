@@ -1,0 +1,265 @@
+<div class="jumbotron container" style="margin-top: 100px;">
+  <h3 class="mb-5">Informacje</h3>
+  <form
+    [formGroup]="form"
+    class="form-signin d-flex flex-column"
+    autocomplete="off"
+  >
+    <div class="row">
+      <div class="col">
+        <div class="row">
+          <mat-form-field class="example-full-width w-75">
+            <label for="inputName" class="sr-only">Imię pacjenta</label>
+            <input
+              matInput
+              type="text"
+              id="inputName"
+              class="form-control"
+              formControlName="name"
+              readonly="true"
+              placeholder="Imię pacjenta"
+              required=""
+              autofocus=""
+              class="m-2"
+            />
+          </mat-form-field>
+        </div>
+
+        <div class="row">
+          <mat-form-field class="example-full-width w-75">
+            <label for="inputSurname" class="sr-only">Nazwisko pacjenta </label>
+            <input
+              matInput
+              type="text"
+              id="inputSurname"
+              class="form-control"
+              formControlName="surname"
+              placeholder="Nazwisko pacjenta"
+              required=""
+              autofocus=""
+              readonly="true"
+              class="m-2"
+            />
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <mat-form-field class="example-full-width w-75">
+            <label for="inputAddress" class="sr-only">Adres pacjenta</label>
+            <input
+              matInput
+              type="text"
+              id="inputAddress"
+              class="form-control"
+              formControlName="address"
+              placeholder="Adres pacjenta"
+              required=""
+              autofocus=""
+              readonly="true"
+              class="m-2"
+            />
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <mat-form-field class="example-full-width w-75">
+        <label for="inputDoctor" class="sr-only">Lekarz prowadzący </label>
+        <input
+          matInput
+          type="text"
+          id="inputDoctor"
+          class="form-control"
+          formControlName="doctor"
+          placeholder="Lekarz prowadzący"
+          required=""
+          readonly="true"
+          autofocus=""
+          class="m-2"
+        />
+      </mat-form-field>
+    </div>
+
+        <div class="row">
+          <mat-form-field class="example-full-width w-75">
+            <label for="inputDesc" class="sr-only">Opis wizyty </label>
+            <mat-label>Opis wizyty</mat-label>
+            <textarea matInput
+            cdkTextareaAutosize
+            #autosize="cdkTextareaAutosize"
+            id="inputDesc"
+            cdkAutosizeMinRows="1"
+            class="form-control"
+            formControlName="examinationDescription"
+            placeholder="Opis wizyty"
+            required=""
+            readonly="true"
+            autofocus=""
+            class="m-2"
+            cdkAutosizeMaxRows="5"></textarea>
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <mat-form-field class="example-full-width w-75">
+            <label for="inputMed" class="sr-only">Ustalone leczenie </label>
+            <input
+              matInput
+              type="text"
+              id="inputMed"
+              class="form-control"
+              formControlName="examinationMed"
+              placeholder="Ustalone leczenie"
+              required=""
+              readonly="true"
+              autofocus=""
+              class="m-2"
+            />
+          </mat-form-field>
+        </div>
+      </div>
+      <div>
+        <mat-tab-group>
+          <mat-tab
+            label="Obraz {{ i + 1 }}"
+            *ngFor="let p of photoContent; let i = index"
+          >
+            <mat-card class="example-card" style="width: 400px;">
+              <mat-card-header>
+                <mat-card-title>{{ examination }}</mat-card-title>
+                <mat-card-subtitle>{{ nameOfMedicalUnit }}</mat-card-subtitle>
+                <mat-card-subtitle>{{ examinationAddress }}</mat-card-subtitle>
+                <mat-card-subtitle>{{ examinationData }}</mat-card-subtitle>
+              </mat-card-header>
+              <img mat-card-image src="{{ p?.path }}" />
+              <mat-card-content>
+                <span>Opis lekarza </span>
+                <div class="container">
+                  <div class="row">
+                    <div class="col col-p-0">
+                      <input
+                        class="float-left"
+                        matInput
+                        placeholder="Opis lekarza"
+                        formControlName="doctorDesc"
+                        value="{{ p?.descriptions?.description }}"
+                      />
+                    </div>
+                    <div class="col">
+                      <button
+                        class="btn btn-secondary btn-sm float-right"
+                        (click)="onSave(p?.path)"
+                      >
+                        Edytuj
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <span>Opis z sieci </span>
+                <div class="container">
+                  <div class="row">
+                    <div class="col col-p-0">
+                      <input
+                        matInput
+                        placeholder="Opis z sieci"
+                        value="{{predictions[i]}}"
+                        readonly="true"
+                      />
+                    </div>
+                    <div class="col">
+                      <button
+                        class="btn btn-secondary btn-sm float-right"
+                        (click)="onCheck(p?.path)"
+                      >
+                        Pobierz
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </mat-tab>
+        </mat-tab-group>
+      </div>
+    </div>
+  </form>
+  <button (click)="addExam()" type="button" class="btn btn-secondary mb-5">
+    Dodaj badanie
+  </button>
+  <div *ngIf="show">
+    <form
+      [formGroup]="examForm"
+      class="form-signin d-flex flex-column"
+      (ngSubmit)="create()"
+      autocomplete="off"
+    >
+      <div class="row">
+        <mat-form-field class="w-45 example-full-width">
+          <mat-label>Data</mat-label>
+          <label for="inputDate" class="sr-only">Data </label>
+          <input matInput  placeholder="Data"
+          required=""
+          formControlName="date"
+          autofocus=""
+          class="m-2" [matDatepicker]="picker">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field class="w-45 example-full-width">
+          <label for="inputDesc" class="sr-only">Opis wizyty</label>
+          <mat-label>Opis wizyty</mat-label>
+          <textarea matInput
+          cdkTextareaAutosize
+          #autosize="cdkTextareaAutosize"
+          id="inputDesc"
+          cdkAutosizeMinRows="1"
+          class="form-control"
+          formControlName="descrip"
+          placeholder="Opis wizyty"
+          required=""
+          autofocus=""
+          class="m-2"
+          cdkAutosizeMaxRows="5"></textarea>
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field class="w-45 example-full-width">
+          <label for="inputNameExam" class="sr-only">Nazwa badania </label>
+          <input
+            matInput
+            type="text"
+            id="inputNameExam"
+            class="form-control"
+            formControlName="nameExam"
+            placeholder="Nazwa"
+            required=""
+            autofocus=""
+            class="m-2"
+          />
+        </mat-form-field>
+        <mat-form-field class="w-45 example-full-width">
+          <label for="inputDrugs" class="sr-only">Leki </label>
+          <input
+            matInput
+            type="text"
+            id="inputDrugs"
+            class="form-control"
+            formControlName="drugs"
+            placeholder="Leki"
+            required=""
+            autofocus=""
+            class="m-2"
+          />
+        </mat-form-field>
+      </div>
+
+      <button
+        mat-button
+        class="btn btn-lg btn-primary btn-block m-2"
+        type="submit"
+        (click)="create()"
+      >
+        Zapisz
+      </button>
+    </form>
+  </div>
+</div>

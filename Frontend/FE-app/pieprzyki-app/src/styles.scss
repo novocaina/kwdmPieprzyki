@@ -1,0 +1,64 @@
+@import "~bootstrap/scss/bootstrap";
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,700|Material+Icons");
+@import "~@angular/material/theming";
+@import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
+@import "~@ng-select/ng-select/themes/default.theme.css";
+@import "./app/styles/variable.scss";
+@import "./app/styles/fonts.scss";
+@import "./app/styles/font-sizes.scss";
+@import "./app/styles/icons.scss";
+
+
+* {
+  font-family: "72-Regular";
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "72-Regular";
+}
+
+button {
+  font-family: "72-Regular";
+}
+
+.font-family-72-regular {
+  font-family: "72-Regular";
+}
+
+.font-family-72-bold {
+  font-family: "72-bold";
+}
+
+.font-family-72-light {
+  font-family: "72-light";
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: $white;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $scroll-color;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: $scroll-color;
+}
+
+.error-message {
+  height: 20px;
+  color: $validation-label;
+  font-family: "72-bold";
+  font-size: 13px;
+}

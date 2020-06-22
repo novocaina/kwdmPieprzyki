@@ -1,0 +1,59 @@
+<div class="jumbotron container" style="margin-top: 100px;">
+  <h3 class="mb-5">Ustawienia</h3>
+  <form [formGroup]="form" class="form-signin d-flex flex-column" (ngSubmit)="save()" autocomplete="off">
+    <div class="row">
+      <mat-form-field class="example-full-width">
+        <label for="inputName" class="sr-only">Imię </label>
+        <input matInput type="text" id="inputName" class="form-control" formControlName="name" placeholder="Imię"
+          required="" autofocus="" class="m-2" />
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <label for="inputSurname" class="sr-only">Nazwisko </label>
+        <input matInput type="text" id="inputSurname" class="form-control" formControlName="surname"
+          placeholder="Nazwisko" required="" autofocus="" class="m-2" />
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <mat-form-field class="example-full-width">
+        <label for="inputAddress" class="sr-only">Adres </label>
+        <input matInput type="text" id="inputAddress" class="form-control" formControlName="address" placeholder="Adres"
+          required="" autofocus="" class="m-2" />
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <label for="inputCity" class="sr-only">Miasto </label>
+        <input matInput type="text" id="inputCity" class="form-control" formControlName="city" placeholder="Miasto"
+          required="" autofocus="" class="m-2" />
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <mat-form-field class="example-full-width">
+        <label for="inputPostal" class="sr-only">Kod pocztowy </label>
+        <input matInput type="text" id="inputPostal" class="form-control" formControlName="postal"
+          placeholder="Kod pocztowy" required="" autofocus="" class="m-2" />
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <label for="inputPhone" class="sr-only">Numer telefonu </label>
+        <input matInput type="text" id="inputPhone" class="form-control" formControlName="phone"
+          placeholder="Numer telefonu" required="" autofocus="" class="m-2" />
+      </mat-form-field>
+    </div>
+
+    <div class="row" *ngIf="doctor">
+      <mat-form-field class="example-full-width">
+        <label for="inputLicenceNumber" class="sr-only">LicenceNumber </label>
+        <input matInput type="licenceNumber" id="inputLicenceNumber" class="form-control"
+          formControlName="licenceNumber" placeholder="LicenceNumber" required="" autofocus="" class="m-2" />
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <label for="inputSpecialisation" class="sr-only">Specialisation</label>
+        <input matInput type="text" id="inputSpecialisation" class="form-control" placeholder="Specialisation"
+          formControlName="specialisation" required="" class="m-2" [disabled]="true" />
+      </mat-form-field>
+    </div>
+    <button mat-button class="btn btn-lg btn-primary btn-block m-2" type="submit" (click)="save()">
+      Zapisz zmiany
+    </button>
+  </form>
+</div>

@@ -1,0 +1,15 @@
+@import "./../../styles/variable.scss";
+
+:host {
+  height: 100vh;
+}
+
+.row{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.w-45 {
+  width: 45%;
+}

@@ -1,0 +1,29 @@
+<div class="jumbotron container" style="margin-top: 100px;">
+  <h3 class="mb-5">Witamy w aplikacji Pieprzyki!</h3>
+
+  <div class="d-flex flex-row justify-content-center">
+    <button mat-raised-button *appHasRole="'Registration'" class="btn btn-outline-success my-2 my-sm-0" (click)="onPageSelection(Routes.AddPatinet)">
+      <mat-icon>add</mat-icon> Dodaj pacjenta
+    </button>
+    <button mat-raised-button *appHasRole="'Registration'" class="btn btn-outline-success my-2 my-sm-0"
+    (click)="onPageSelection(Routes.PatientsData)">
+    <mat-icon>list</mat-icon> Lista pacjentów
+  </button>
+    <button mat-raised-button *appHasRole="'Doctor'" class="btn btn-outline-success my-2 my-sm-0"
+      (click)="onPageSelection(Routes.PatientsList)">
+      <mat-icon>list</mat-icon> Lista pacjentów
+    </button>
+    <button mat-raised-button *appHasRole="'User'" class="btn btn-outline-success my-2 my-sm-0" (click)="onPageSelection(Routes.MyData)">
+      <mat-icon>assignment</mat-icon> Moje badania
+    </button>
+    <button mat-raised-button *appHasRole="'User'" class="btn btn-outline-success my-2 my-sm-0" (click)="onPageSelection(Routes.AddData)">
+      <mat-icon>add</mat-icon> Dodaj badanie
+    </button>
+    <button mat-raised-button *appHasRole="'User'" class="btn btn-outline-success my-2 my-sm-0" (click)="onPageSelection(Routes.Settings)">
+      <mat-icon>settings</mat-icon> Ustawienia
+    </button>
+     <button mat-raised-button *appHasRole="'Doctor'" class="btn btn-outline-success my-2 my-sm-0" (click)="onPageSelection(Routes.Settings)">
+      <mat-icon>settings</mat-icon> Ustawienia
+    </button>
+  </div>
+</div>
